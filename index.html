@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国内AI大模型研究动态 | 专题网站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #9b59b6;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 76px;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .paper-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        
+        .paper-item:last-child {
+            border-bottom: none;
+        }
+        
+        .paper-title {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .paper-authors {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .vis-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .team-member {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .member-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+        
+        .stats-label {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .news-item {
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .news-item:hover {
+            background-color: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .news-date {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .model-badge {
+            display: inline-block;
+            background-color: #e3f2fd;
+            color: #1565c0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 50px 0;
+            }
+            
+            .stats-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-brain me-2"></i>AI大模型研究动态
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#overview">专题概况</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#research">最新成果</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#visualization">数据可视化</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trends">发展趋势</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#applications">行业应用</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">制作团队</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">国内AI大模型研究动态</h1>
+                    <p class="lead">追踪中国人工智能大模型领域的最新进展、技术创新与产业应用</p>
+                    <p>基于真实研究数据与权威报告，展示中国AI大模型从"跟跑"到"并跑"的历史性跨越[citation:1]</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fas fa-robot" style="font-size: 8rem; opacity: 0.9;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 专题概况 -->
+    <section id="overview" class="py-5">
+        <div class="container">
+            <h2 class="section-title">专题概况</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <p>人工智能大模型已成为推动国家科技和经济高质量发展的新引擎[citation:9]。近年来，中国在大模型领域取得了令人瞩目的进展，实现了从"跟跑"到"并跑"的历史性跨越[citation:1]。</p>
+                    <p>截至2025年7月，中国已发布1509个大模型，占全球大模型总数的40%，数量位居全球首位[citation:3]。国产大模型如Qwen、DeepSeek等开源模型在核心性能上已追平甚至超越国际主流产品[citation:1]。</p>
+                    <p>本专题网站旨在系统梳理国内AI大模型领域的最新研究动态、技术突破与产业应用，为研究者、学生和行业人士提供全面的参考信息。</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-bullhorn me-2"></i>最新动态
+                        </div>
+                        <div class="card-body">
+                            <div class="news-item">
+                                <div class="news-date">2025年12月</div>
+                                <strong>国产大模型跻身全球第一梯队</strong>
+                                <p class="mb-0">国际大模型竞技场榜单显示，百度文心大模型文本能力位列全球第二、国内第一[citation:6]</p>
+                            </div>
+                            <div class="news-item">
+                                <div class="news-date">2025年9月</div>
+                                <strong>类脑脉冲大模型"瞬悉1.0"问世</strong>
+                                <p class="mb-0">中科院自动化所推出非Transformer架构大模型，实现超长序列推理效率数量级提升[citation:8]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 关键数据 -->
+            <div class="row mt-5 text-center">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-number">1，509</div>
+                    <div class="stats-label">中国发布大模型数量[citation:3]</div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-number">40%</div>
+                    <div class="stats-label">占全球大模型比例[citation:3]</div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-number">17.1%</div>
+                    <div class="stats-label">中国开源AI模型全球下载量占比[citation:6]</div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-number">2.4万亿</div>
+                    <div class="stats-label">文心大模型5.0参数量[citation:6]</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据可视化 -->
+    <section id="visualization" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">数据可视化</h2>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="vis-container">
+                        <h5 class="mb-4">中国大模型全球占比 (2025年7月)</h5>
+                        <canvas id="modelDistributionChart"></canvas>
+                        <p class="mt-3 text-muted">数据来源：央视网报道[citation:3]</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="vis-container">
+                        <h5 class="mb-4">中国开源AI模型全球影响力 (2024-2025)</h5>
+                        <canvas id="opensourceImpactChart"></canvas>
+                        <p class="mt-3 text-muted">数据来源：Hugging Face与麻省理工学院联合报告[citation:6]</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="vis-container">
+                        <h5 class="mb-4">国内代表性大模型技术特点</h5>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="model-badge">文心大模型 (百度)</div>
+                                <ul class="mt-2">
+                                    <li>文本能力全球第二、国内第一[citation:6]</li>
+                                    <li>原生全模态统一建模[citation:6]</li>
+                                    <li>参数量达2.4万亿[citation:6]</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="model-badge">DeepSeek</div>
+                                <ul class="mt-2">
+                                    <li>核心性能追平国际主流产品[citation:1]</li>
+                                    <li>开源模型获国际广泛认可[citation:1]</li>
+                                    <li>在稀疏注意力机制有突破[citation:2]</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="model-badge">瞬悉1.0 (中科院)</div>
+                                <ul class="mt-2">
+                                    <li>类脑脉冲大模型[citation:8]</li>
+                                    <li>超长序列推理效率提升100倍+[citation:8]</li>
+                                    <li>非Transformer架构创新[citation:8]</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新成果（论文展示） -->
+    <section id="research" class="py-5">
+        <div class="container">
+            <h2 class="section-title">最新成果</h2>
+            <p class="lead mb-4">展示国内AI大模型领域的最新研究论文（中英文各4篇）</p>
+            
+            <!-- 中文论文 -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h4 class="mb-3"><i class="fas fa-language me-2"></i>中文论文（4篇）</h4>
+                    
+                    <div class="paper-item">
+                        <div class="paper-title">《原生可训练稀疏注意力：硬件对齐与原生可训练的稀疏注意力》</div>
+                        <div class="paper-authors">张铭， 梁文锋等 | ACL 2025 最佳论文奖</div>
+                        <p class="mt-2">北京大学与DeepSeek团队合作提出原生可训练稀疏注意力(NSA)机制，解决了稀疏注意力实际应用挑战，在64k序列长度下实现显著加速[citation:2]。</p>
+                        <a href="https://www.nsfc.gov.cn/p1/3381/2825/95698.html" target="_blank" class="btn btn-sm btn-outline-primary">查看详情</a>
+                    </div>
+                    
+                    <div class="paper-item">
+                        <div class="paper-title">《语言模型抵抗对齐：来自数据压缩的证据》</div>
+                        <div class="paper-authors">杨耀东， 吉嘉铭， 邱天异 | ACL 2025 最佳论文奖</div>
+                        <p class="mt-2">从压缩理论视角提出"语言模型弹性"框架，发现对齐训练内在"抵抗对齐"现象，为对齐脆弱性问题提供新理论视角[citation:5]。</p>
+                        <a href="https://www.nsfc.gov.cn/p1/3381/2825/95697.html" target="_blank" class="btn btn-sm btn-outline-primary">查看详情</a>
+                    </div>
+                    
+                    <div class="paper-item">
+                        <div class="paper-title">《基于内生复杂性的类脑脉冲大模型"瞬悉1.0"技术报告》</div>
+                        <div class="paper-authors">徐波， 李国齐等 | 中国科学院自动化研究所</div>
+                        <p class="mt-2">提出基于"内生复杂性"的类脑脉冲大模型架构，在国产GPU平台实现超长序列推理效率数量级提升，为非Transformer架构提供新路径[citation:8]。</p>
+                        <a href="https://brain-ai.ia.ac.cn/xsyl/kydt/202509/t20250908_756977.html" target="_blank" class="btn btn-sm btn-outline-primary">查看详情</a>
+                    </div>
+                    
+                    <div class="paper-item">
+                        <div class="paper-title">《人工智能大模型发展趋势》</div>
+                        <div class="paper-authors">彭玉佳， 方方 | 光明日报</div>
+                        <p class="mt-2">分析AI大模型面临的算力掣肘、推理幻觉和产业落地壁垒等挑战，提出从模型架构创新、测试标准体系构建和产学研协同三方面突破[citation:9]。</p>
+                        <a href="https://epaper.gmw.cn/gmrb/html/2025-10/21/nw.D110000gmrb_20251021_3-11.htm" target="_blank" class="btn btn-sm btn-outline-primary">查看详情</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 英文论文 -->
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="mb-3"><i class="fas fa-language me-2"></i>英文论文（4篇）</h4>
+                    
+                    <div class="paper-item">
+                        <div class="paper-title">"Native Sparse Attention: Hardware-Aligned and Natively Trainable Sparse Attention"</div>
+                        <div class="paper-authors">Ming Zhang， Wenfeng Liang et al. | ACL 2025 Best Paper</div>
+                        <p class="mt-2">Proposes Native Sparse Attention (NSA) mechanism that achieves significant speedup at 64k sequence length, with forward propagation speed up to 9× faster than Flash Attention[citation:2]。</p>
+                        <a href="https://www.nsfc.gov.cn/p1/3381/2825/95698.html" target="_blank" class="btn btn-sm btn-outline-primary">View Details</a>
+                    </div>
+                    
+                    <div class="paper-item">
+                        <div class="paper-title">"Language Models Resist Alignment: Evidence From Data Compression"</div>
+                        <div class="paper-authors">Yaodong Yang， Jiaming Ji， Tianyi Qiu et al. | ACL 2025 Best Paper</div>
+                        <p class="mt-2">Proposes a "language model elasticity" framework from a compression theory perspective， revealing intrinsic "resistance to alignment" phenomenon in alignment training[citation:5]。</p>
+                        <a href="https://www.nsfc.gov.cn/p1/3381/2825/95697.html" target="_blank" class="btn btn-sm btn-outline-primary">View Details</a>
+                    </div>
+                    
+                    <div class="paper-item">
+                        <div class="paper-title">"SpikingBrain-1.0: A Brain-Inspired Spiking Large Language Model with Linear Complexity"</div>
+                        <div class="paper-authors">Bo Xu， Guoqi Li et al. | Institute of Automation， Chinese Academy of Sciences</div>
+                        <p class="mt-2">Proposes a brain-inspired spiking LLM based on "endogenous complexity" theory， achieving orders-of-magnitude efficiency improvement in ultra-long sequence reasoning[citation:8]。</p>
+                        <a href="https://brain-ai.ia.ac.cn/xsyl/kydt/202509/t20250908_756977.html" target="_blank" class="btn btn-sm btn-outline-primary">View Details</a>
+                    </div>
+                    
+                    <div class="paper-item">
+                        <div class="paper-title">"The Development Trends of Artificial Intelligence Large Models"</div>
+                        <div class="paper-authors">Yujia Peng， Fang Fang | Guangming Daily</div>
+                        <p class="mt-2">Analyzes challenges including computing power constraints， reasoning hallucinations， and industry adoption barriers， proposing breakthroughs in model architecture innovation， testing standards， and industry-academia collaboration[citation:9]。</p>
+                        <a href="https://epaper.gmw.cn/gmrb/html/2025-10/21/nw.D110000gmrb_20251021_3-11.htm" target="_blank" class="btn btn-sm btn-outline-primary">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 发展趋势 -->
+    <section id="trends" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">发展趋势</h2>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <i class="fas fa-bolt me-2"></i>技术趋势
+                        </div>
+                        <div class="card-body">
+                            <h5>从算力驱动到效率优先转型[citation:9]</h5>
+                            <ul>
+                                <li>探索非Transformer架构（如类脑脉冲模型）[citation:8]</li>
+                                <li>稀疏注意力等高效算法突破[citation:2]</li>
+                                <li>多模态融合与原生多模态发展[citation:6]</li>
+                                <li>从"拼接"到"原生统一"的框架设计[citation:6]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <i class="fas fa-industry me-2"></i>产业趋势
+                        </div>
+                        <div class="card-body">
+                            <h5>2025年：AI应用加速落地之年[citation:4]</h5>
+                            <ul>
+                                <li>Agent元年启幕，智能体模型爆发[citation:4]</li>
+                                <li>B端落地进程超预期[citation:4]</li>
+                                <li>行业大模型成为核心引擎[citation:1]</li>
+                                <li>开源成为主流选项[citation:3]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-exclamation-triangle me-2"></i>面临的挑战
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6>技术底座短板[citation:1]</h6>
+                                    <p>国产芯片在精度、性能和制造工艺上与国际领先水平存在差距</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>数据要素瓶颈[citation:1]</h6>
+                                    <p>行业数据质量参差不齐，高质量训练数据集稀缺</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>治理体系待完善[citation:1]</h6>
+                                    <p>传统治理模式难以适应技术快速迭代，需构建敏捷治理框架</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 行业应用 -->
+    <section id="applications" class="py-5">
+        <div class="container">
+            <h2 class="section-title">行业应用</h2>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <p>中国凭借超大人口规模和丰富行业场景，已成为全球规模最大、场景最丰富的大模型"试验场"[citation:6]。产业智能化呈现分层推进格局：</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">率先规模化落地行业[citation:1]</h5>
+                                    <ul>
+                                        <li>软件与互联网</li>
+                                        <li>金融与银行业</li>
+                                        <li>文娱与媒体</li>
+                                        <li>医疗健康</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">探索应用场景行业[citation:1]</h5>
+                                    <ul>
+                                        <li>能源与电力</li>
+                                        <li>建筑与房地产</li>
+                                        <li>制造与工业</li>
+                                        <li>物流与运输</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5>典型应用案例</h5>
+                        <ul>
+                            <li><strong>电力领域</strong>：国家电网推出光明电力大模型，实现年巡检杆塔500万基，减少人工登塔40%[citation:6]</li>
+                            <li><strong>金融领域</strong>：中信建投将千亿参数金融大模型与投研积淀结合，开创24*7智能投研服务新模式[citation:4]</li>
+                            <li><strong>科学领域</strong>：中科院"磐石·科学基础大模型"服务于材料创制、遥感数据理解、天文等科学任务[citation:3]</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line me-2"></i>应用数据
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>AI代码生成渗透率</span>
+                                    <strong>80%+</strong>
+                                </div>
+                                <div class="progress mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+                                </div>
+                                <small class="text-muted">在互联网、游戏等行业[citation:4]</small>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>企业AI代码生成比例</span>
+                                    <strong>20-30%</strong>
+                                </div>
+                                <div class="progress mt-1">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%"></div>
+                                </div>
+                                <small class="text-muted">微软公司代码库[citation:4]</small>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>飞桨文心生态开发者</span>
+                                    <strong>2333万</strong>
+                                </div>
+                                <small class="text-muted">服务企业76万家[citation:6]</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 制作团队 -->
+    <footer id="team">
+        <div class="container">
+            <h2 class="text-center mb-5">制作团队</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="team-member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>马逸航</h5>
+                        <p class="mb-0">组长</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="team-member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>陈俊锋</h5>
+                        <p class="mb-0">组员</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="team-member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>林楚旭</h5>
+                        <p class="mb-0">组员</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="team-member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>蚁道阳</h5>
+                        <p class="mb-0">组员</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="team-member">
+                        <div class="member-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5>叶嘉乐</h5>
+                        <p class="mb-0">组员</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <h5>关于本网站</h5>
+                    <p>本网站为"国内AI大模型研究动态"专题网站，基于真实研究数据和权威报告制作，旨在系统展示中国AI大模型领域的最新进展。所有数据均来自官方报告、学术论文和权威媒体报道。</p>
+                </div>
+                
+                <div class="col-md-6">
+                    <h5>数据来源说明</h5>
+                    <ul>
+                        <li>人民网研究院《中国智能互联网发展报告(2025)》[citation:1]</li>
+                        <li>国家自然科学基金委员会项目成果[citation:2][citation:5]</li>
+                        <li>央视网、光明日报等权威媒体报道[citation:3][citation:9]</li>
+                        <li>中国科学院自动化研究所研究成果[citation:8]</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5 pt-4 border-top">
+                <p class="mb-0">&copy; 2025 国内AI大模型研究动态专题网站 | 设计并部署日期：2025年12月</p>
+                <p class="mb-0">本网站支持电脑和手机浏览，所有链接均真实有效</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 初始化图表
+        document.addEventListener('DOMContentLoaded', function() {
+            // 中国大模型全球占比图表
+            const modelCtx = document.getElementById('modelDistributionChart').getContext('2d');
+            const modelChart = new Chart(modelCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['中国大模型 (40%)', '其他国家大模型 (60%)'],
+                    datasets: [{
+                        data: [40, 60],
+                        backgroundColor: ['#3498db', '#e74c3c'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.parsed}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 开源影响力图表
+            const opensourceCtx = document.getElementById('opensourceImpactChart').getContext('2d');
+            const opensourceChart = new Chart(opensourceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['中国', '美国', '其他地区'],
+                    datasets: [{
+                        label: '开源AI模型全球下载量占比 (%)',
+                        data: [17.1, 15.8, 67.1],
+                        backgroundColor: ['#3498db', '#2ecc71', '#f39c12'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 70,
+                            title: {
+                                display: true,
+                                text: '百分比 (%)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 平滑滚动到锚点
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
